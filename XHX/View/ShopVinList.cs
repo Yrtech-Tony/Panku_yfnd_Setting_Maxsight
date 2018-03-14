@@ -204,9 +204,10 @@ namespace XHX.View
                 //}
                 //workbook.Close(true, Path.Combine(btnModule.Text, "TestData" + ".xlsx"), Type.Missing);
                 DateTime dtStart = DateTime.Now;
-                for (int i = 7; i < 7700; i++)
+                for (int i = 7; i < 1000000; i++)
                 {
                     string shopCode = msExcelUtil.GetCellValue(worksheet_FengMian, "B", i).Replace("I","");
+                    if (string.IsNullOrEmpty(shopCode)) break; ;
                     if (!string.IsNullOrEmpty(shopCode))
                     {
                         string projectCode = CommonHandler.GetComboBoxSelectedValue(cboProjects).ToString();

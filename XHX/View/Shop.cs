@@ -206,9 +206,10 @@ namespace XHX.View
             {
                 Workbook workbook = msExcelUtil.OpenExcelByMSExcel(btnModule.Text);
                 Worksheet worksheet_FengMian = workbook.Worksheets["经销商"] as Worksheet;
-                for (int i = 2; i < 100; i++)
+                for (int i = 2; i < 1000; i++)
                 {
                     string shopCode = msExcelUtil.GetCellValue(worksheet_FengMian, "A", i);
+                    if (string.IsNullOrEmpty(shopCode)) break;
                     if (!string.IsNullOrEmpty(shopCode))
                     {
                         string shopName = msExcelUtil.GetCellValue(worksheet_FengMian, "B", i);
