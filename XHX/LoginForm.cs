@@ -86,72 +86,72 @@ namespace XHX
             }
             else
             {
-                localhost.Service localService = new localhost.Service();
-                localService.Url = "http://192.168.13.240/XHX.BMWServer/service.asmx";
-                DateTime now = webService.ReturnDateTimeNow();
+                //localhost.Service localService = new localhost.Service();
+                //localService.Url = "http://192.168.13.240/XHX.BMWServer/service.asmx";
+                //DateTime now = webService.ReturnDateTimeNow();
 
-                if (now.Date > new DateTime(2015, 11, 1) && now.Date < new DateTime(2015, 12, 1))
-                {
-                    CommonHandler.ShowMessage(MessageType.Information, "系统还有" + (30 - now.Day).ToString() + "天使用期限，请尽快续费");
-                }
-                if (now.Date == new DateTime(2015, 12, 1))
-                {
-                    CommonHandler.ShowMessage(MessageType.Information, "已经过期，如需继续使用请续费");
-                    return;
-                }
+                //if (now.Date > new DateTime(2015, 11, 1) && now.Date < new DateTime(2015, 12, 1))
+                //{
+                //    CommonHandler.ShowMessage(MessageType.Information, "系统还有" + (30 - now.Day).ToString() + "天使用期限，请尽快续费");
+                //}
+                //if (now.Date == new DateTime(2015, 12, 1))
+                //{
+                //    CommonHandler.ShowMessage(MessageType.Information, "已经过期，如需继续使用请续费");
+                //    return;
+                //}
 
-                DataSet ds1 = localService.getCurrentVersion();
-                if (ds1.Tables[0].Rows.Count > 0)
-                {
-                    serverVersion = Convert.ToString(ds1.Tables[0].Rows[0]["CurrentVersion"]);
-                }
-                if (serverVersion != clientVersion)
-                {
-                    CommonHandler.ShowMessage(MessageType.Information, "有新版本，请先进行版本更新。"); return;
-                }
-                DataSet ds = localService.SearchUserByUserID(userID);
+                //DataSet ds1 = localService.getCurrentVersion();
+                //if (ds1.Tables[0].Rows.Count > 0)
+                //{
+                //    serverVersion = Convert.ToString(ds1.Tables[0].Rows[0]["CurrentVersion"]);
+                //}
+                //if (serverVersion != clientVersion)
+                //{
+                //    CommonHandler.ShowMessage(MessageType.Information, "有新版本，请先进行版本更新。"); return;
+                //}
+                //DataSet ds = localService.SearchUserByUserID(userID);
 
-                UserInfoDto userInfoDto = new UserInfoDto();
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    userInfoDto.UserID = Convert.ToString(ds.Tables[0].Rows[0]["UserID"]);
-                    userInfoDto.PSW = Convert.ToString(ds.Tables[0].Rows[0]["PSW"]);
-                    userInfoDto.RoleType = Convert.ToString(ds.Tables[0].Rows[0]["RoleType"]);
-                    userInfoDto.MacAddress = Convert.ToString(ds.Tables[0].Rows[0]["MacAddress"]);
-                }
-                string[] macList = userInfoDto.MacAddress.Split('$');
-                bool macExitst = false;
-                if (string.IsNullOrEmpty(userInfoDto.MacAddress))
-                {
-                    macExitst = true;
-                }
+                //UserInfoDto userInfoDto = new UserInfoDto();
+                //if (ds.Tables[0].Rows.Count > 0)
+                //{
+                //    userInfoDto.UserID = Convert.ToString(ds.Tables[0].Rows[0]["UserID"]);
+                //    userInfoDto.PSW = Convert.ToString(ds.Tables[0].Rows[0]["PSW"]);
+                //    userInfoDto.RoleType = Convert.ToString(ds.Tables[0].Rows[0]["RoleType"]);
+                //    userInfoDto.MacAddress = Convert.ToString(ds.Tables[0].Rows[0]["MacAddress"]);
+                //}
+                //string[] macList = userInfoDto.MacAddress.Split('$');
+                //bool macExitst = false;
+                //if (string.IsNullOrEmpty(userInfoDto.MacAddress))
+                //{
+                //    macExitst = true;
+                //}
                 
-                foreach (string mac in macList)
-                {
-                    if (mac == getMacAddr_Local())
-                    { macExitst = true; break; }
-                }
-                //if (!string.IsNullOrEmpty(userInfoDto.MacAddress) && !macExitst)
-                 if (!macExitst)
-                {
-                    CommonHandler.ShowMessage(MessageType.Information, "请使用固定电脑登陆");
-                    return;
-                }
-                if (!userID.Equals(userInfoDto.UserID))
-                {
-                    CommonHandler.ShowMessage(MessageType.Information, "用户名错误。"); return;
-                }
-                if (!pwd.Equals(userInfoDto.PSW))
-                {
-                    CommonHandler.ShowMessage(MessageType.Information, "密码错误。"); return;
-                }
-                userInfoDto.IsNetWork = false;
+                //foreach (string mac in macList)
+                //{
+                //    if (mac == getMacAddr_Local())
+                //    { macExitst = true; break; }
+                //}
+                ////if (!string.IsNullOrEmpty(userInfoDto.MacAddress) && !macExitst)
+                // if (!macExitst)
+                //{
+                //    CommonHandler.ShowMessage(MessageType.Information, "请使用固定电脑登陆");
+                //    return;
+                //}
+                //if (!userID.Equals(userInfoDto.UserID))
+                //{
+                //    CommonHandler.ShowMessage(MessageType.Information, "用户名错误。"); return;
+                //}
+                //if (!pwd.Equals(userInfoDto.PSW))
+                //{
+                //    CommonHandler.ShowMessage(MessageType.Information, "密码错误。"); return;
+                //}
+                //userInfoDto.IsNetWork = false;
 
-                MainForm mainForm = new MainForm();
-                mainForm.UserInfoDto = userInfoDto;
-                mainForm.Show();
+                //MainForm mainForm = new MainForm();
+                //mainForm.UserInfoDto = userInfoDto;
+                //mainForm.Show();
 
-                this.Hide();
+                //this.Hide();
             }
         }
 

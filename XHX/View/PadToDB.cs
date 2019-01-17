@@ -351,7 +351,7 @@ namespace XHX.View
             }
 
             string sqlConnString = GetSqlServerConnectionString("123.57.229.128", "Infiniti_StockCheck", "sa", "mxT1@mfb");
-            string sqlitePath = Path.Combine(tbnSQLitePath.Text.Trim(), "readonly.db");
+            string sqlitePath = Path.Combine(tbnSQLitePath.Text.Trim(), "yfnd.db");
             this.Cursor = Cursors.WaitCursor;
             SqlConversionHandler handler = new SqlConversionHandler(delegate(bool done,
                 bool success, int percent, string msg)
@@ -366,7 +366,7 @@ namespace XHX.View
 
                         if (success)
                         {
-                            File.Copy(sqlitePath, Path.Combine(Path.GetDirectoryName(sqlitePath), "writeable.db"), true);
+                           // File.Copy(sqlitePath, Path.Combine(Path.GetDirectoryName(sqlitePath), "writeable.db"), true);
                             CommonHandler.ShowMessage(MessageType.Information, "œ¬‘ÿ≥…π¶");
                             pbrProgress.Value = 0;
                         }

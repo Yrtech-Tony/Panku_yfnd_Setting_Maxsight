@@ -25,54 +25,54 @@ namespace XHX
     public static class CommonHandler
     {
         public static string Skin_Name = string.Empty;
-        public static OleDbConnection conn = null;
+       // public static OleDbConnection conn = null;
         public static localhost.Service serviceCommon = new localhost.Service();
-        public static LocalService localservice = new LocalService();
+       // public static LocalService localservice = new LocalService();
 
         public static bool IsNetWork { get; set; }
         
-        public static void DBConnect()
-        {
-            try
-            {
-                //数据库连接
-                if (conn == null)
-                {
-                    conn = new OleDbConnection();
+        //public static void DBConnect()
+        //{
+        //    try
+        //    {
+        //        //数据库连接
+        //        if (conn == null)
+        //        {
+        //            conn = new OleDbConnection();
 
-                    //conn.ConnectionString = "provider=sqloledb.1;data source=10.202.101.107;initial catalog=XHX_DEV;user id=fanfan;pwd=1";
-                    //conn.ConnectionString = "provider=sqloledb.1;data source=192.168.1.108;initial catalog=XHX_DEV;user id=fanfan;pwd=1";
-                    conn.ConnectionString = "provider=sqloledb.1;data source=121.199.50.154;initial catalog=KLSL_SP;user id=XHX;pwd=mxT1@mfb;";
-                    conn.CreateCommand().CommandTimeout = 0;
-                }
-                if (conn.State == ConnectionState.Closed)
-                {
-                    conn.Open();//打开连接  
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowMessage(MessageType.Information, "本地数据库异常：\n\r"+ex.Message);
-            }
-        }
-        public static void connClose()
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-        }
-        public static DataSet query(string sql)
-        {
-            DataSet ds = new DataSet();//创建dataSet对象  
-            OleDbDataAdapter da = new OleDbDataAdapter(sql, conn);//适配器，用于填充dataSet或dataTable  
-            OleDbCommand command = conn.CreateCommand();
-            command.CommandTimeout = 60000;
-            //command.
-            da.Fill(ds);//使用Fill()方法填充dataSet 
-            connClose();//关闭连接 
-            return ds;//返回DataSet
-        }
+        //            //conn.ConnectionString = "provider=sqloledb.1;data source=10.202.101.107;initial catalog=XHX_DEV;user id=fanfan;pwd=1";
+        //            //conn.ConnectionString = "provider=sqloledb.1;data source=192.168.1.108;initial catalog=XHX_DEV;user id=fanfan;pwd=1";
+        //            conn.ConnectionString = "provider=sqloledb.1;data source=121.199.50.154;initial catalog=KLSL_SP;user id=XHX;pwd=mxT1@mfb;";
+        //            conn.CreateCommand().CommandTimeout = 0;
+        //        }
+        //        if (conn.State == ConnectionState.Closed)
+        //        {
+        //            conn.Open();//打开连接  
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //ShowMessage(MessageType.Information, "本地数据库异常：\n\r"+ex.Message);
+        //    }
+        //}
+        //public static void connClose()
+        //{
+        //    if (conn.State == ConnectionState.Open)
+        //    {
+        //        conn.Close();
+        //    }
+        //}
+        //public static DataSet query(string sql)
+        //{
+        //    DataSet ds = new DataSet();//创建dataSet对象  
+        //    OleDbDataAdapter da = new OleDbDataAdapter(sql, conn);//适配器，用于填充dataSet或dataTable  
+        //    OleDbCommand command = conn.CreateCommand();
+        //    command.CommandTimeout = 60000;
+        //    //command.
+        //    da.Fill(ds);//使用Fill()方法填充dataSet 
+        //    connClose();//关闭连接 
+        //    return ds;//返回DataSet
+        //}
 
         public static void ExcelExport(GridView gridView)
         {

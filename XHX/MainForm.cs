@@ -11,7 +11,7 @@ using System.Collections;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraEditors;
 using XHX.View;
-using XHX.ViewLocalService;
+//using XHX.ViewLocalService;
 using System.Reflection;
 using System.Configuration;
 using XHX.DTO;
@@ -36,7 +36,7 @@ namespace XHX
         public MainForm()
         {
             InitializeComponent();
-            localService.Url = "http://192.168.13.240/XHX.BMWServer/service.asmx";
+          //  localService.Url = "http://192.168.13.240/XHX.BMWServer/service.asmx";
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             LookAndFeel.SetSkinStyle(config.AppSettings.Settings["SkinName"].Value);
 
@@ -125,10 +125,10 @@ namespace XHX
             //mainMenu.DropDownItems.Add(subMenu);
             //subMenu = new ToolStripMenuItem("数据导出", null, new EventHandler(menu_Click)); subMenu.Tag = "";
             //mainMenu.DropDownItems.Add(subMenu);
-            subMenu = new ToolStripMenuItem("用户名设置", null, new EventHandler(menu_Click)); subMenu.Tag = "UserInfo";
-            mainMenu.DropDownItems.Add(subMenu);
-            subMenu = new ToolStripMenuItem("权限-页面设置", null, new EventHandler(menu_Click)); subMenu.Tag = "RoleTypeProgram";
-            mainMenu.DropDownItems.Add(subMenu);
+            //subMenu = new ToolStripMenuItem("用户名设置", null, new EventHandler(menu_Click)); subMenu.Tag = "UserInfo";
+            //mainMenu.DropDownItems.Add(subMenu);
+            //subMenu = new ToolStripMenuItem("权限-页面设置", null, new EventHandler(menu_Click)); subMenu.Tag = "RoleTypeProgram";
+            //mainMenu.DropDownItems.Add(subMenu);
             //subMenu = new ToolStripMenuItem("经销商A/B卷设置", null, new EventHandler(menu_Click)); subMenu.Tag = "ShopSubjectType";
             //mainMenu.DropDownItems.Add(subMenu);
             //subMenu = new ToolStripMenuItem("删除错误分数", null, new EventHandler(menu_Click)); subMenu.Tag = "DeleteAnswerScore";
@@ -249,7 +249,7 @@ namespace XHX
             }
             else
             {
-                pageControl = asmb.CreateInstance("XHX.ViewLocalService." + (sender as ToolStripMenuItem).Tag) as BaseForm;
+              //  pageControl = asmb.CreateInstance("XHX.ViewLocalService." + (sender as ToolStripMenuItem).Tag) as BaseForm;
             }
             pageControl.CSParentForm = this;
             pageControl.AutoScroll = true;
@@ -610,49 +610,107 @@ namespace XHX
             if (_userInfoDto.IsNetWork)
             {
                 localhost.Service webService = new localhost.Service();
-                LocalService localService = new LocalService();
-                #region 同步SP
-                //{
-                //    DataSet ds = webService.SyncSp();
-                //    if (ds.Tables[0].Rows.Count > 0)
-                //    {
-                //        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                //        {
-                //            string spName = ds.Tables[0].Rows[i]["SPName"].ToString();
-                //            string spContent = ds.Tables[0].Rows[i]["SPContent"].ToString();
-                //            localService.syncSP(spName, spContent);
-                //        }
-                //    }
-                //}
-                #endregion
-                #region Notice
-                //{
-                //    DataSet ds = webService.GetAllNotice(DateTime.Now.AddDays(-2), DateTime.Now.AddDays(2));
-                //    List<NoticeDto> noticeList = new List<NoticeDto>();
-                //    if (ds.Tables[0].Rows.Count > 0)
-                //    {
-                //        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                //        {
-                //            NoticeDto dto = new NoticeDto();
-                //            dto.NoticeID = ds.Tables[0].Rows[i]["NoticeID"].ToString();
-                //            dto.NoticeTitle = ds.Tables[0].Rows[i]["NoticeTitle"].ToString();
-                //            dto.NoticeContent = ds.Tables[0].Rows[i]["NoticeContent"].ToString();
-                //            dto.FileExist = ds.Tables[0].Rows[i]["FileExist"].ToString();
-                //            dto.InDateTime = Convert.ToDateTime(ds.Tables[0].Rows[i]["InDateTime"]);
-                //            noticeList.Add(dto);
-                //        }
-                //    }
+               // LocalService localService = new LocalService();
+                //#region 同步SP
+                ////{
+                ////    DataSet ds = webService.SyncSp();
+                ////    if (ds.Tables[0].Rows.Count > 0)
+                ////    {
+                ////        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                ////        {
+                ////            string spName = ds.Tables[0].Rows[i]["SPName"].ToString();
+                ////            string spContent = ds.Tables[0].Rows[i]["SPContent"].ToString();
+                ////            localService.syncSP(spName, spContent);
+                ////        }
+                ////    }
+                ////}
+                //#endregion
+                //#region Notice
+                ////{
+                ////    DataSet ds = webService.GetAllNotice(DateTime.Now.AddDays(-2), DateTime.Now.AddDays(2));
+                ////    List<NoticeDto> noticeList = new List<NoticeDto>();
+                ////    if (ds.Tables[0].Rows.Count > 0)
+                ////    {
+                ////        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                ////        {
+                ////            NoticeDto dto = new NoticeDto();
+                ////            dto.NoticeID = ds.Tables[0].Rows[i]["NoticeID"].ToString();
+                ////            dto.NoticeTitle = ds.Tables[0].Rows[i]["NoticeTitle"].ToString();
+                ////            dto.NoticeContent = ds.Tables[0].Rows[i]["NoticeContent"].ToString();
+                ////            dto.FileExist = ds.Tables[0].Rows[i]["FileExist"].ToString();
+                ////            dto.InDateTime = Convert.ToDateTime(ds.Tables[0].Rows[i]["InDateTime"]);
+                ////            noticeList.Add(dto);
+                ////        }
+                ////    }
 
-                //    foreach (NoticeDto dto in noticeList)
-                //    {
-                //        View.NoticePop noticePop = new XHX.View.NoticePop(dto.NoticeID);
-                //        noticePop.Show();
-                //    }
-                //}
-                #endregion
-                #region SpecialCase
+                ////    foreach (NoticeDto dto in noticeList)
+                ////    {
+                ////        View.NoticePop noticePop = new XHX.View.NoticePop(dto.NoticeID);
+                ////        noticePop.Show();
+                ////    }
+                ////}
+                //#endregion
+                //#region SpecialCase
+                ////{
+                ////    DataSet ds = webService.SearchSpecialCaseByNeedVICoConfirm();
+                ////    List<SpecialCaseDto> specialCaseList = new List<SpecialCaseDto>();
+                ////    if (ds.Tables[0].Rows.Count > 0)
+                ////    {
+                ////        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                ////        {
+                ////            SpecialCaseDto dto = new SpecialCaseDto();
+                ////            dto.ProjectCode = ds.Tables[0].Rows[i]["ProjectCode"].ToString();
+                ////            dto.ShopCode = ds.Tables[0].Rows[i]["ShopCode"].ToString();
+                ////            dto.ShopName = ds.Tables[0].Rows[i]["ShopName"].ToString();
+                ////            dto.SubjectCode = ds.Tables[0].Rows[i]["SubjectCode"].ToString();
+                ////            dto.SpecialCaseCode = ds.Tables[0].Rows[i]["SpecialCaseCode"].ToString();
+                ////            specialCaseList.Add(dto);
+                ////        }
+                ////    }
+
+                ////    foreach (SpecialCaseDto dto in specialCaseList)
+                ////    {
+                ////        if (this.UserInfoDto.RoleType == "C")
+                ////        {
+                ////            View.SpecialCasePop specialCasePop = new XHX.View.SpecialCasePop(dto.SpecialCaseCode, this.UserInfoDto);
+                ////            specialCasePop.Show();
+                ////        }
+                ////    }
+                ////}
+                //#endregion
+            }
+            else
+            {
+                //LocalService localService = new LocalService();
+               
+                ////#region Notice
+                ////{
+                ////    DataSet ds = localService.GetAllNotice(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(2));
+                ////    List<NoticeDto> noticeList = new List<NoticeDto>();
+                ////    if (ds.Tables[0].Rows.Count > 0)
+                ////    {
+                ////        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                ////        {
+                ////            NoticeDto dto = new NoticeDto();
+                ////            dto.NoticeID = ds.Tables[0].Rows[i]["NoticeID"].ToString();
+                ////            dto.NoticeTitle = ds.Tables[0].Rows[i]["NoticeTitle"].ToString();
+                ////            dto.NoticeContent = ds.Tables[0].Rows[i]["NoticeContent"].ToString();
+                ////            dto.FileExist = ds.Tables[0].Rows[i]["FileExist"].ToString();
+                ////            dto.InDateTime = Convert.ToDateTime(ds.Tables[0].Rows[i]["InDateTime"]);
+                ////            noticeList.Add(dto);
+                ////        }
+                ////    }
+
+                ////    foreach (NoticeDto dto in noticeList)
+                ////    {
+                ////        ViewLocalService.NoticePop noticePop = new XHX.ViewLocalService.NoticePop(dto.NoticeID);
+                ////        noticePop.Show();
+                ////    }
+                ////}
+                ////#endregion
+                ////#region SpecialCase
                 //{
-                //    DataSet ds = webService.SearchSpecialCaseByNeedVICoConfirm();
+                //    DataSet ds = localService.SearchSpecialCaseByNeedVICoConfirm();
                 //    List<SpecialCaseDto> specialCaseList = new List<SpecialCaseDto>();
                 //    if (ds.Tables[0].Rows.Count > 0)
                 //    {
@@ -663,78 +721,20 @@ namespace XHX
                 //            dto.ShopCode = ds.Tables[0].Rows[i]["ShopCode"].ToString();
                 //            dto.ShopName = ds.Tables[0].Rows[i]["ShopName"].ToString();
                 //            dto.SubjectCode = ds.Tables[0].Rows[i]["SubjectCode"].ToString();
-                //            dto.SpecialCaseCode = ds.Tables[0].Rows[i]["SpecialCaseCode"].ToString();
                 //            specialCaseList.Add(dto);
                 //        }
                 //    }
 
                 //    foreach (SpecialCaseDto dto in specialCaseList)
                 //    {
-                //        if (this.UserInfoDto.RoleType == "C")
+                //        if (this.UserInfoDto.RoleType == "C" && dto.NeedVICoConfirmChk == true)
                 //        {
-                //            View.SpecialCasePop specialCasePop = new XHX.View.SpecialCasePop(dto.SpecialCaseCode, this.UserInfoDto);
+                //            ViewLocalService.SpecialCasePop specialCasePop = new XHX.ViewLocalService.SpecialCasePop(dto.SpecialCaseCode, this.UserInfoDto);
                 //            specialCasePop.Show();
                 //        }
                 //    }
                 //}
-                #endregion
-            }
-            else
-            {
-                //LocalService localService = new LocalService();
-               
-                #region Notice
-                {
-                    DataSet ds = localService.GetAllNotice(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(2));
-                    List<NoticeDto> noticeList = new List<NoticeDto>();
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        {
-                            NoticeDto dto = new NoticeDto();
-                            dto.NoticeID = ds.Tables[0].Rows[i]["NoticeID"].ToString();
-                            dto.NoticeTitle = ds.Tables[0].Rows[i]["NoticeTitle"].ToString();
-                            dto.NoticeContent = ds.Tables[0].Rows[i]["NoticeContent"].ToString();
-                            dto.FileExist = ds.Tables[0].Rows[i]["FileExist"].ToString();
-                            dto.InDateTime = Convert.ToDateTime(ds.Tables[0].Rows[i]["InDateTime"]);
-                            noticeList.Add(dto);
-                        }
-                    }
-
-                    foreach (NoticeDto dto in noticeList)
-                    {
-                        ViewLocalService.NoticePop noticePop = new XHX.ViewLocalService.NoticePop(dto.NoticeID);
-                        noticePop.Show();
-                    }
-                }
-                #endregion
-                #region SpecialCase
-                {
-                    DataSet ds = localService.SearchSpecialCaseByNeedVICoConfirm();
-                    List<SpecialCaseDto> specialCaseList = new List<SpecialCaseDto>();
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        {
-                            SpecialCaseDto dto = new SpecialCaseDto();
-                            dto.ProjectCode = ds.Tables[0].Rows[i]["ProjectCode"].ToString();
-                            dto.ShopCode = ds.Tables[0].Rows[i]["ShopCode"].ToString();
-                            dto.ShopName = ds.Tables[0].Rows[i]["ShopName"].ToString();
-                            dto.SubjectCode = ds.Tables[0].Rows[i]["SubjectCode"].ToString();
-                            specialCaseList.Add(dto);
-                        }
-                    }
-
-                    foreach (SpecialCaseDto dto in specialCaseList)
-                    {
-                        if (this.UserInfoDto.RoleType == "C" && dto.NeedVICoConfirmChk == true)
-                        {
-                            ViewLocalService.SpecialCasePop specialCasePop = new XHX.ViewLocalService.SpecialCasePop(dto.SpecialCaseCode, this.UserInfoDto);
-                            specialCasePop.Show();
-                        }
-                    }
-                }
-                #endregion
+                //#endregion
             }
         }
 
